@@ -71,19 +71,28 @@ export default function CursoDetalleModal({
 
     if (!curso) return null;
 
-    const acumulado = evaluaciones.reduce(
+    const acumuladoRaw = evaluaciones.reduce(
         (total, evaluacion) =>
-            total +
-            Number(evaluacion.porcentajeObtenido || 0),
+            total + Number(evaluacion.porcentajeObtenido || 0),
         0
     );
 
-    const porcentajeEvaluado = evaluaciones.reduce(
+    const acumulado =
+        acumuladoRaw >= 99.5
+            ? 100
+            : Number(acumuladoRaw.toFixed(2));
+
+
+    const porcentajeEvaluadoRaw = evaluaciones.reduce(
         (total, evaluacion) =>
-            total +
-            Number(evaluacion.porcentaje || 0),
+            total + Number(evaluacion.porcentaje || 0),
         0
     );
+
+    const porcentajeEvaluado =
+        porcentajeEvaluadoRaw >= 99.5
+            ? 100
+            : Number(porcentajeEvaluadoRaw.toFixed(2));
 
     async function handleMatricular() {
 
@@ -604,7 +613,7 @@ export default function CursoDetalleModal({
                         </span>
 
                         <strong>
-                            {curso.nota}
+                            {curso.nota > 99.5 ? 100 : curso.nota}
                         </strong>
 
                     </div>
