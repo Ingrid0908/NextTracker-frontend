@@ -114,3 +114,32 @@ export async function eliminarEvaluacion(id) {
     }
 
 }
+
+export async function actualizarPorcentajeObtenido(
+    id,
+    porcentajeObtenido
+) {
+
+    const response = await fetch(
+        `${API_URL}/${id}/porcentaje-obtenido`,
+        {
+            method: "PUT",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(porcentajeObtenido)
+        }
+    );
+
+    if (!response.ok) {
+
+        const mensaje = await response.text();
+
+        throw new Error(mensaje);
+
+    }
+
+    return response.json();
+}

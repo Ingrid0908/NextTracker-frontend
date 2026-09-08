@@ -1,33 +1,21 @@
 .modal {
     width: 560px;
-    padding: 30px;
+    padding: 32px;
     animation: show .2s ease;
 }
 
-
-/* =========================
-   CLOSE
-========================= */
-
 .close {
     position: absolute;
-
     top: 16px;
     right: 18px;
-
-    width: 32px;
-    height: 32px;
-
+    width: 30px;
+    height: 30px;
     border: none;
-    background: var(--surface-muted);
-
-    color: var(--text-secondary);
-
     border-radius: 50%;
-
+    background: var(--surface-muted);
+    color: var(--text-secondary);
+    font-size: 14px;
     cursor: pointer;
-    font-size: 15px;
-
     transition: var(--transition);
 }
 
@@ -36,49 +24,29 @@
     color: var(--text);
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
 .sigla {
-    display: inline-block;
-
-    color: var(--primary);
-
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .4px;
-
+    display: block;
     margin-bottom: 5px;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
 }
 
 .nombre {
-    margin: 0 40px 24px 0;
-
+    margin: 0 40px 20px 0;
     color: var(--text);
-
     font-size: 22px;
-    line-height: 1.3;
+    line-height: 1.25;
 }
-
-
-/* =========================
-   ESTADO
-========================= */
 
 .estadoContainer {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-
-    background: var(--surface-soft);
-
-    padding: 12px 14px;
-
-    border-radius: var(--radius-small);
-
+    justify-content: space-between;
     margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-light);
 }
 
 .estadoContainer > span {
@@ -87,91 +55,70 @@
 }
 
 .estado {
-    font-size: 13px;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 700;
 }
 
-
-/* =========================
-   INFORMACIÓN
-========================= */
-
 .info {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
     margin-bottom: 24px;
 }
 
 .row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 11px 0;
-
-    border-bottom: 1px solid var(--border-light);
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px;
+    border-radius: var(--radius-small);
+    background: var(--surface-soft);
 }
 
 .row span {
     color: var(--text-muted);
-    font-size: 13px;
+    font-size: 11px;
 }
 
 .row strong {
-    color: var(--text-secondary);
+    color: var(--text);
     font-size: 14px;
 }
 
-
-/* =========================
-   EVALUACIONES
-========================= */
-
 .evaluaciones {
     margin-top: 8px;
-    padding-top: 20px;
-
-    border-top: 1px solid var(--border-light);
 }
 
 .evaluacionesHeader {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-
-    margin-bottom: 14px;
+    justify-content: space-between;
+    margin-bottom: 12px;
 }
 
 .evaluacionesHeader h3 {
     margin: 0;
-
+    color: var(--text);
     font-size: 15px;
-    color: var(--text-secondary);
 }
 
 .addButton {
     border: none;
-
     background: var(--surface-muted);
-    color: #596b91;
-
-    padding: 7px 11px;
-
+    color: var(--primary);
+    padding: 7px 12px;
     border-radius: var(--radius-small);
-
-    font-size: 12px;
-    font-weight: 600;
-
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
     cursor: pointer;
-
     transition: var(--transition);
 }
 
 .addButton:hover {
-    background: var(--border);
+    background: var(--background-secondary);
 }
 
 .evaluacionesList {
@@ -182,662 +129,173 @@
 
 .evaluacion {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-
-    gap: 15px;
-
-    padding: 12px 13px;
-
-    background: var(--surface-soft);
-
+    gap: 12px;
+    padding: 12px;
     border: 1px solid var(--border-light);
-
     border-radius: var(--radius-small);
-
-    box-sizing: border-box;
-}
-
-.evaluacionInfo {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    min-width: 0;
+    background: var(--surface);
 }
 
 .evaluacion > div:first-child {
     display: flex;
-    align-items: center;
-    gap: 9px;
-
-    min-width: 0;
+    flex-direction: column;
+    gap: 3px;
 }
 
 .evaluacion strong {
-    color: var(--text-secondary);
-    font-size: 13px;
+    color: var(--text);
+    font-size: 12px;
 }
 
 .evaluacion > div:first-child span {
     color: var(--text-muted);
-    font-size: 11px;
-
-    background: var(--surface-muted);
-
-    padding: 3px 6px;
-    border-radius: 5px;
+    font-size: 10px;
 }
 
+/* =========================================================
+   OBTENIDO + BOTONES
+   ========================================================= */
 
-/* =========================
-   OBTENIDO
-========================= */
+.evaluacionAcciones {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+}
 
 .obtenido {
     display: flex;
     align-items: center;
-
+    justify-content: flex-end;
     gap: 8px;
-    white-space: nowrap;
 }
 
 .obtenido > span {
-    color: var(--text-muted);
+    color: var(--text-secondary);
     font-size: 11px;
 }
 
 .obtenido > strong {
-    color: #52648a;
-    font-size: 13px;
+    color: var(--text);
+    font-size: 12px;
+}
+
+.notaValor {
+    border: none;
+    background: transparent;
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.notaValor:hover {
+    background: var(--surface-muted);
+}
+
+.notaObtenida {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.notaInput {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.notaInput input {
+    width: 58px;
+    height: 28px;
+    box-sizing: border-box;
+    padding: 5px 7px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    text-align: center;
+    font-family: inherit;
+    font-size: 11px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.notaInput input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(99, 115, 232, .10);
+}
+
+.notaInput span {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.saveNotaButton {
+    border: none;
+    background: #6373a1;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.saveNotaButton:hover {
+    background: #56658d;
+}
+
+.saveNotaButton:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.evaluacionBotones {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
 }
 
 .editarButton {
     border: none;
     background: transparent;
-
-    color: #6373a1;
-
-    font-size: 11px;
-    font-weight: 600;
-
-    cursor: pointer;
-
+    color: var(--text-secondary);
     padding: 4px 6px;
-    border-radius: 5px;
-
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
     transition: var(--transition);
 }
 
 .editarButton:hover {
-    background: var(--surface-muted);
+    color: var(--primary);
 }
-
-.editarObtenido {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-}
-
-.editarObtenido > span {
-    color: var(--text-muted);
-    font-size: 11px;
-}
-
-.editarObtenido input {
-    width: 70px;
-    height: 32px;
-
-    box-sizing: border-box;
-
-    padding: 6px 8px;
-
-    border: 1px solid #d9dee5;
-    border-radius: 7px;
-
-    background: var(--surface);
-
-    color: var(--text-secondary);
-
-    text-align: center;
-
-    font-family: inherit;
-    font-size: 12px;
-
-    outline: none;
-
-    transition: var(--transition);
-}
-
-.editarObtenido input:focus {
-    border-color: #aeb8cc;
-
-    box-shadow:
-        0 0 0 2px var(--surface-muted);
-}
-
-.guardarButton {
-    width: 28px;
-    height: 28px;
-
-    border: none;
-    border-radius: 6px;
-
-    background: #6373a1;
-    color: white;
-
-    cursor: pointer;
-    font-size: 12px;
-}
-
-
-/* =========================
-   RESUMEN
-========================= */
-
-.resumen {
-    display: flex;
-    justify-content: space-between;
-
-    gap: 10px;
-    margin-top: 14px;
-}
-
-.resumen > div {
-    flex: 1;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 11px 13px;
-
-    background: var(--surface-muted);
-
-    border-radius: var(--radius-small);
-}
-
-.resumen span {
-    color: #687385;
-    font-size: 12px;
-}
-
-.resumen strong {
-    color: #52648a;
-    font-size: 14px;
-}
-
-
-/* =========================
-   NUEVA EVALUACIÓN
-========================= */
-
-.nuevaEvaluacion {
-    margin-top: 12px;
-    padding: 14px;
-
-    background: var(--surface-soft);
-
-    border: 1px solid #e8ebef;
-
-    border-radius: 10px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-
-    box-sizing: border-box;
-}
-
-.nuevaEvaluacion input {
-    width: 100%;
-
-    box-sizing: border-box;
-
-    height: 36px;
-    padding: 8px 10px;
-
-    border: 1px solid #d9dee5;
-    border-radius: 7px;
-
-    background: var(--surface);
-
-    color: var(--text-secondary);
-
-    font-family: inherit;
-    font-size: 13px;
-
-    outline: none;
-
-    transition: var(--transition);
-}
-
-.nuevaEvaluacion input:focus {
-    border-color: #aeb8cc;
-
-    box-shadow:
-        0 0 0 2px var(--surface-muted);
-}
-
-.porcentajeInput {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-}
-
-.porcentajeInput input {
-    width: 100px;
-}
-
-.porcentajeInput span {
-    color: var(--text-muted);
-    font-size: 13px;
-}
-
-.formActions {
-    display: flex;
-    justify-content: flex-end;
-
-    gap: 8px;
-    margin-top: 3px;
-}
-
-.cancelButton,
-.saveButton {
-    border: none;
-
-    padding: 8px 12px;
-
-    border-radius: 7px;
-
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: var(--transition);
-}
-
-.cancelButton {
-    background: var(--border-light);
-    color: #667085;
-}
-
-.cancelButton:hover {
-    background: var(--border);
-}
-
-.saveButton {
-    background: #6373a1;
-    color: white;
-}
-
-.saveButton:hover {
-    background: #56658d;
-}
-
-.cancelButton:disabled,
-.saveButton:disabled {
-    opacity: .5;
-    cursor: not-allowed;
-}
-
-
-/* =========================
-   EDITAR EVALUACIÓN
-========================= */
-
-.editarEvaluacion {
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 12px;
-
-    box-sizing: border-box;
-}
-
-.editarEvaluacion h4 {
-    margin: 0 0 2px;
-
-    color: var(--text-secondary);
-
-    font-size: 14px;
-    font-weight: 700;
-}
-
-
-/* =========================
-   CAMPOS DE EDICIÓN
-========================= */
-
-.campoEdicion {
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 6px;
-
-    box-sizing: border-box;
-}
-
-.campoEdicion label {
-    color: var(--text-muted);
-
-    font-size: 11px;
-    font-weight: 600;
-}
-
-.campoEdicion > input,
-.inputConUnidad input {
-    height: 34px;
-
-    box-sizing: border-box;
-
-    padding: 7px 9px;
-
-    border: 1px solid #d9dee5;
-    border-radius: 7px;
-
-    background: var(--surface);
-
-    color: var(--text-secondary);
-
-    font-family: inherit;
-    font-size: 13px;
-
-    outline: none;
-
-    transition: var(--transition);
-}
-
-.campoEdicion > input {
-    width: 100%;
-}
-
-.campoEdicion > input:focus,
-.inputConUnidad input:focus {
-    border-color: #aeb8cc;
-
-    box-shadow:
-        0 0 0 2px var(--surface-muted);
-}
-
-
-/* =========================
-   PORCENTAJES
-========================= */
-
-.porcentajes {
-    display: flex;
-
-    width: 100%;
-
-    gap: 20px;
-
-    box-sizing: border-box;
-}
-
-.porcentajes .campoEdicion {
-    flex: 1;
-    min-width: 0;
-}
-
-
-/* =========================
-   INPUT + %
-========================= */
-
-.inputConUnidad {
-    display: flex;
-    align-items: center;
-
-    gap: 7px;
-}
-
-.inputConUnidad input {
-    width: 90px;
-}
-
-.inputConUnidad span {
-    color: var(--text-muted);
-
-    font-size: 13px;
-}
-
-
-/* =========================
-   BOTONES DE EDICIÓN
-========================= */
-
-.edicionActions {
-    display: flex;
-
-    justify-content: flex-end;
-    align-items: center;
-
-    gap: 8px;
-
-    margin-top: 4px;
-
-    width: 100%;
-
-    box-sizing: border-box;
-}
-
-.edicionActions .cancelButton,
-.edicionActions .saveButton {
-    border: none;
-
-    padding: 8px 12px;
-
-    border-radius: 7px;
-
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: var(--transition);
-}
-
-.edicionActions .cancelButton {
-    background: var(--border-light);
-    color: #667085;
-}
-
-.edicionActions .cancelButton:hover {
-    background: var(--border);
-}
-
-.edicionActions .saveButton {
-    background: #6373a1;
-    color: white;
-}
-
-.edicionActions .saveButton:hover {
-    background: #56658d;
-}
-
-.edicionActions button:disabled {
-    opacity: .5;
-    cursor: not-allowed;
-}
-
-
-/* =========================
-   ACCIONES PRINCIPALES
-========================= */
-
-.matricularButton,
-.finalizarButton {
-    width: 100%;
-
-    border: none;
-
-    padding: 11px 15px;
-
-    border-radius: var(--radius-small);
-
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: var(--transition);
-
-    margin-top: 12px;
-}
-
-.matricularButton {
-    background: #e7edf8;
-    color: #526b9d;
-}
-
-.matricularButton:hover {
-    background: #dfe5f1;
-}
-
-.finalizarButton {
-    background: #6373a1;
-    color: white;
-}
-
-.finalizarButton:hover:not(:disabled) {
-    background: #56658d;
-}
-
-.matricularButton:disabled,
-.finalizarButton:disabled {
-    opacity: .45;
-    cursor: not-allowed;
-}
-
-
-/* =========================
-   ACCIONES SECUNDARIAS
-========================= */
-
-.actions {
-    display: flex;
-    justify-content: flex-end;
-
-    margin-top: 18px;
-}
-
-.secondary {
-    border: 1px solid #e1e5ea;
-
-    background: var(--surface);
-
-    color: #59636e;
-
-    padding: 9px 14px;
-
-    border-radius: var(--radius-small);
-
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: var(--transition);
-}
-
-.secondary:hover {
-    background: var(--surface-soft);
-    border-color: #d6dbe1;
-}
-
-
-/* =========================
-   ESTADOS
-========================= */
-
-.empty {
-    color: var(--text-muted);
-
-    font-size: 12px;
-    text-align: center;
-
-    padding: 12px;
-}
-
-.error {
-    margin-top: 12px;
-
-    padding: 9px 11px;
-
-    background: #f5eeee;
-
-    color: #806363;
-
-    border-radius: var(--radius-small);
-
-    font-size: 12px;
-}
-
-
-/* =========================
-   NOTA FINAL
-========================= */
-
-.notaFinal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-top: 12px;
-    padding: 15px;
-
-    background: var(--surface-muted);
-
-    border-radius: 11px;
-}
-
-.notaFinal span {
-    color: #667085;
-    font-size: 13px;
-}
-
-.notaFinal strong {
-    color: #52648a;
-    font-size: 20px;
-}
-
-
-/* =========================
-   ELIMINAR
-========================= */
 
 .eliminarButton {
     border: none;
-
     background: transparent;
-
-    color: #8b6f76;
-
+    color: var(--text-muted);
     padding: 4px 6px;
-
-    border-radius: 5px;
-
     font-family: inherit;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
-
     cursor: pointer;
-
     transition: var(--transition);
 }
 
 .eliminarButton:hover {
-    background: #f5eeee;
-    color: #80636a;
+    color: #9a6570;
 }
 
 .eliminarButton:disabled {
@@ -845,97 +303,395 @@
     cursor: not-allowed;
 }
 
+/* =========================================================
+   EDICIÓN
+   ========================================================= */
 
-/* =========================
-   POPUP CONFIRMACIÓN
-========================= */
+.editarEvaluacion {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100%;
+}
+
+.editarEvaluacion h4 {
+    margin: 0;
+    color: var(--text);
+    font-size: 13px;
+}
+
+.campoEdicion {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.campoEdicion label {
+    color: var(--text-secondary);
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.campoEdicion input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+    background: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 11px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.campoEdicion input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 115, 232, .10);
+}
+
+.porcentajes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.inputConUnidad {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+    background: var(--surface);
+    overflow: hidden;
+}
+
+.inputConUnidad:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 115, 232, .10);
+}
+
+.inputConUnidad input {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.inputConUnidad input:focus {
+    box-shadow: none;
+}
+
+.inputConUnidad span {
+    padding-right: 9px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.edicionActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+/* =========================================================
+   RESUMEN
+   ========================================================= */
+
+.resumen {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.resumen > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: var(--radius-small);
+    background: var(--surface-muted);
+}
+
+.resumen span {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.resumen strong {
+    color: var(--text);
+    font-size: 12px;
+}
+
+/* =========================================================
+   NUEVA EVALUACIÓN
+   ========================================================= */
+
+.nuevaEvaluacion {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 14px;
+    border-radius: var(--radius-small);
+    background: var(--surface-soft);
+    border: 1px solid var(--border-light);
+}
+
+.nuevaEvaluacion > input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+    background: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 11px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.nuevaEvaluacion > input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 115, 232, .10);
+}
+
+.porcentajeInput {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+    background: var(--surface);
+    overflow: hidden;
+}
+
+.porcentajeInput input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 10px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 11px;
+}
+
+.porcentajeInput span {
+    padding-right: 10px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.cancelButton {
+    border: none;
+    background: var(--surface-muted);
+    color: var(--text-secondary);
+    padding: 7px 12px;
+    border-radius: var(--radius-small);
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.cancelButton:hover {
+    background: var(--border);
+}
+
+.cancelButton:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.saveButton {
+    border: none;
+    background: var(--primary);
+    color: white;
+    padding: 7px 13px;
+    border-radius: var(--radius-small);
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.saveButton:hover {
+    background: var(--primary-hover);
+}
+
+.saveButton:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   BOTONES DEL CURSO
+   ========================================================= */
+
+.matricularButton,
+.finalizarButton {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: var(--radius-small);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.matricularButton {
+    background: var(--surface-muted);
+    color: var(--primary);
+}
+
+.matricularButton:hover {
+    background: var(--background-secondary);
+}
+
+.finalizarButton {
+    background: var(--primary);
+    color: white;
+}
+
+.finalizarButton:hover {
+    background: var(--primary-hover);
+}
+
+.finalizarButton:disabled,
+.matricularButton:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.secondary {
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.secondary:hover {
+    color: var(--primary);
+}
+
+/* =========================================================
+   ESTADOS
+   ========================================================= */
+
+.empty {
+    padding: 20px;
+    border-radius: var(--radius-small);
+    background: var(--surface-soft);
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 11px;
+}
+
+.error {
+    margin: 12px 0 0;
+    padding: 9px 11px;
+    border-radius: var(--radius-small);
+    background: #f3eef0;
+    color: #8b6870;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.notaFinal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: var(--radius-small);
+    background: var(--surface-muted);
+}
+
+.notaFinal span {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.notaFinal strong {
+    color: var(--text);
+    font-size: 18px;
+}
+
+/* =========================================================
+   CONFIRMACIONES
+   ========================================================= */
 
 .confirmOverlay {
     position: fixed;
-
     inset: 0;
-
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    z-index: 1100;
-
     padding: 20px;
-
-    background: rgba(31, 41, 55, .42);
+    background: rgba(31, 41, 55, .38);
 }
 
 .confirmModal {
     width: 360px;
     max-width: 100%;
-
     box-sizing: border-box;
-
-    padding: 26px;
-
+    padding: 24px;
+    border-radius: var(--radius-large);
     background: var(--surface);
-
-    border: 1px solid var(--border-light);
-
-    border-radius: var(--radius-medium);
-
-    box-shadow:
-        0 20px 50px rgba(15, 23, 42, .20);
-
+    box-shadow: 0 20px 50px rgba(15, 23, 42, .16);
     text-align: center;
-
     animation: show .2s ease;
 }
 
-
-/* =========================
-   ICONO
-========================= */
-
 .confirmIcon {
-    width: 40px;
-    height: 40px;
-
-    margin: 0 auto 14px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
+    width: 38px;
+    height: 38px;
+    margin: 0 auto 12px;
     border-radius: 50%;
-
     background: var(--surface-muted);
-
     color: var(--text-secondary);
-
     font-size: 17px;
     font-weight: 700;
 }
 
-
-/* =========================
-   MENSAJE
-========================= */
-
 .confirmModal h3 {
-    margin: 0 0 9px;
-
+    margin: 0 0 8px;
     color: var(--text);
-
-    font-family: inherit;
-    font-size: 17px;
-    font-weight: 700;
+    font-size: 16px;
 }
 
 .confirmModal p {
     margin: 0;
-
     color: var(--text-secondary);
-
-    font-family: inherit;
-    font-size: 13px;
-
+    font-size: 11px;
     line-height: 1.5;
 }
 
@@ -943,40 +699,27 @@
     color: var(--text);
 }
 
-
-/* =========================
-   BOTONES POPUP
-========================= */
-
 .confirmActions {
     display: flex;
-    justify-content: flex-end;
-
+    justify-content: center;
     gap: 8px;
-
-    margin-top: 22px;
+    margin-top: 20px;
 }
 
 .confirmCancel,
 .confirmDelete {
     border: none;
-
-    padding: 9px 14px;
-
+    padding: 8px 14px;
     border-radius: var(--radius-small);
-
     font-family: inherit;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 600;
-
     cursor: pointer;
-
     transition: var(--transition);
 }
 
 .confirmCancel {
     background: var(--surface-muted);
-
     color: var(--text-secondary);
 }
 
@@ -985,17 +728,39 @@
 }
 
 .confirmDelete {
-    background: #e8edf5;
-
-    color: #596b91;
+    background: #8b6870;
+    color: white;
 }
 
 .confirmDelete:hover {
-    background: #dce3ef;
+    background: #765861;
 }
 
 .confirmCancel:disabled,
 .confirmDelete:disabled {
     opacity: .5;
     cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .modal {
+        width: 100%;
+        padding: 24px;
+    }
+
+    .info {
+        grid-template-columns: 1fr;
+    }
+
+    .porcentajes {
+        grid-template-columns: 1fr;
+    }
+
+    .obtenido {
+        flex-wrap: wrap;
+    }
+
+    .evaluacion {
+        flex-wrap: wrap;
+    }
 }
