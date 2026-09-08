@@ -194,6 +194,8 @@
     border: 1px solid var(--border-light);
 
     border-radius: var(--radius-small);
+
+    box-sizing: border-box;
 }
 
 .evaluacionInfo {
@@ -207,6 +209,8 @@
     display: flex;
     align-items: center;
     gap: 9px;
+
+    min-width: 0;
 }
 
 .evaluacion strong {
@@ -271,26 +275,33 @@
 .editarObtenido {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 7px;
+}
+
+.editarObtenido > span {
+    color: var(--text-muted);
+    font-size: 11px;
 }
 
 .editarObtenido input {
-    width: 55px;
-    height: 28px;
+    width: 70px;
+    height: 32px;
 
     box-sizing: border-box;
 
-    padding: 4px 6px;
+    padding: 6px 8px;
 
-    border: 1px solid #d5dae2;
-    border-radius: 6px;
+    border: 1px solid #d9dee5;
+    border-radius: 7px;
 
     background: var(--surface);
 
+    color: var(--text-secondary);
+
     text-align: center;
 
+    font-family: inherit;
     font-size: 12px;
-    color: var(--text-secondary);
 
     outline: none;
 
@@ -298,8 +309,10 @@
 }
 
 .editarObtenido input:focus {
-    border-color: #9aa8c3;
-    box-shadow: 0 0 0 2px var(--surface-muted);
+    border-color: #aeb8cc;
+
+    box-shadow:
+        0 0 0 2px var(--surface-muted);
 }
 
 .guardarButton {
@@ -371,6 +384,8 @@
     display: flex;
     flex-direction: column;
     gap: 9px;
+
+    box-sizing: border-box;
 }
 
 .nuevaEvaluacion input {
@@ -388,6 +403,7 @@
 
     color: var(--text-secondary);
 
+    font-family: inherit;
     font-size: 13px;
 
     outline: none;
@@ -397,7 +413,9 @@
 
 .nuevaEvaluacion input:focus {
     border-color: #aeb8cc;
-    box-shadow: 0 0 0 2px var(--surface-muted);
+
+    box-shadow:
+        0 0 0 2px var(--surface-muted);
 }
 
 .porcentajeInput {
@@ -431,10 +449,13 @@
 
     border-radius: 7px;
 
+    font-family: inherit;
     font-size: 12px;
     font-weight: 600;
 
     cursor: pointer;
+
+    transition: var(--transition);
 }
 
 .cancelButton {
@@ -455,6 +476,197 @@
     background: #56658d;
 }
 
+.cancelButton:disabled,
+.saveButton:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   EDITAR EVALUACIÓN
+========================= */
+
+.editarEvaluacion {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    box-sizing: border-box;
+}
+
+.editarEvaluacion h4 {
+    margin: 0 0 2px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   CAMPOS DE EDICIÓN
+========================= */
+
+.campoEdicion {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    box-sizing: border-box;
+}
+
+.campoEdicion label {
+    color: var(--text-muted);
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.campoEdicion > input,
+.inputConUnidad input {
+    height: 34px;
+
+    box-sizing: border-box;
+
+    padding: 7px 9px;
+
+    border: 1px solid #d9dee5;
+    border-radius: 7px;
+
+    background: var(--surface);
+
+    color: var(--text-secondary);
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    transition: var(--transition);
+}
+
+.campoEdicion > input {
+    width: 100%;
+}
+
+.campoEdicion > input:focus,
+.inputConUnidad input:focus {
+    border-color: #aeb8cc;
+
+    box-shadow:
+        0 0 0 2px var(--surface-muted);
+}
+
+
+/* =========================
+   PORCENTAJES
+========================= */
+
+.porcentajes {
+    display: flex;
+
+    width: 100%;
+
+    gap: 20px;
+
+    box-sizing: border-box;
+}
+
+.porcentajes .campoEdicion {
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* =========================
+   INPUT + %
+========================= */
+
+.inputConUnidad {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+.inputConUnidad input {
+    width: 90px;
+}
+
+.inputConUnidad span {
+    color: var(--text-muted);
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   BOTONES DE EDICIÓN
+========================= */
+
+.edicionActions {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 4px;
+
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+.edicionActions .cancelButton,
+.edicionActions .saveButton {
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.edicionActions .cancelButton {
+    background: var(--border-light);
+    color: #667085;
+}
+
+.edicionActions .cancelButton:hover {
+    background: var(--border);
+}
+
+.edicionActions .saveButton {
+    background: #6373a1;
+    color: white;
+}
+
+.edicionActions .saveButton:hover {
+    background: #56658d;
+}
+
+.edicionActions button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
 
 /* =========================
    ACCIONES PRINCIPALES
@@ -470,6 +682,7 @@
 
     border-radius: var(--radius-small);
 
+    font-family: inherit;
     font-size: 13px;
     font-weight: 600;
 
@@ -498,6 +711,7 @@
     background: #56658d;
 }
 
+.matricularButton:disabled,
 .finalizarButton:disabled {
     opacity: .45;
     cursor: not-allowed;
@@ -519,12 +733,14 @@
     border: 1px solid #e1e5ea;
 
     background: var(--surface);
+
     color: #59636e;
 
     padding: 9px 14px;
 
     border-radius: var(--radius-small);
 
+    font-family: inherit;
     font-size: 12px;
     font-weight: 600;
 
@@ -558,6 +774,7 @@
     padding: 9px 11px;
 
     background: #f5eeee;
+
     color: #806363;
 
     border-radius: var(--radius-small);
@@ -591,4 +808,194 @@
 .notaFinal strong {
     color: #52648a;
     font-size: 20px;
+}
+
+
+/* =========================
+   ELIMINAR
+========================= */
+
+.eliminarButton {
+    border: none;
+
+    background: transparent;
+
+    color: #8b6f76;
+
+    padding: 4px 6px;
+
+    border-radius: 5px;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.eliminarButton:hover {
+    background: #f5eeee;
+    color: #80636a;
+}
+
+.eliminarButton:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   POPUP CONFIRMACIÓN
+========================= */
+
+.confirmOverlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1100;
+
+    padding: 20px;
+
+    background: rgba(31, 41, 55, .42);
+}
+
+.confirmModal {
+    width: 360px;
+    max-width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 26px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border-light);
+
+    border-radius: var(--radius-medium);
+
+    box-shadow:
+        0 20px 50px rgba(15, 23, 42, .20);
+
+    text-align: center;
+
+    animation: show .2s ease;
+}
+
+
+/* =========================
+   ICONO
+========================= */
+
+.confirmIcon {
+    width: 40px;
+    height: 40px;
+
+    margin: 0 auto 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--surface-muted);
+
+    color: var(--text-secondary);
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   MENSAJE
+========================= */
+
+.confirmModal h3 {
+    margin: 0 0 9px;
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.confirmModal p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-family: inherit;
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.confirmModal p strong {
+    color: var(--text);
+}
+
+
+/* =========================
+   BOTONES POPUP
+========================= */
+
+.confirmActions {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 22px;
+}
+
+.confirmCancel,
+.confirmDelete {
+    border: none;
+
+    padding: 9px 14px;
+
+    border-radius: var(--radius-small);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.confirmCancel {
+    background: var(--surface-muted);
+
+    color: var(--text-secondary);
+}
+
+.confirmCancel:hover {
+    background: var(--border);
+}
+
+.confirmDelete {
+    background: #e8edf5;
+
+    color: #596b91;
+}
+
+.confirmDelete:hover {
+    background: #dce3ef;
+}
+
+.confirmCancel:disabled,
+.confirmDelete:disabled {
+    opacity: .5;
+    cursor: not-allowed;
 }
