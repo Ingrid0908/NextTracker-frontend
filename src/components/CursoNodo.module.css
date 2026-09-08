@@ -1,0 +1,107 @@
+.card {
+    width: 120px;
+    height: 105px;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    border: 1px solid rgba(0, 0, 0, .05);
+
+    transition: .2s ease;
+}
+
+
+.card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, .12);
+}
+
+
+.header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.sigla {
+    font-size: 11px;
+
+    font-weight: 700;
+
+    color: #2B2C2F;
+}
+
+
+.creditos {
+    font-size: 10px;
+
+    font-weight: 600;
+
+    color: #64748B;
+}
+
+
+.card h4 {
+    margin: 0;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    line-height: 1.15;
+
+    text-align: center;
+
+    color: #111827;
+}
+
+
+/* =========================
+   ESTADOS
+========================= */
+
+.aprobado {
+    background: var(--estado-aprobado-bg);
+    border-top: 4px solid var(--estado-aprobado);
+}
+
+
+.pendiente {
+    background: var(--estado-pendiente-bg);
+    border-top: 4px solid var(--estado-pendiente);
+}
+
+
+.reprobado {
+    background: var(--estado-reprobado-bg);
+    border-top: 4px solid var(--estado-reprobado);
+}
+
+
+.matriculado {
+    background: var(--estado-matriculado-bg);
+    border-top: 4px solid var(--estado-matriculado);
+}

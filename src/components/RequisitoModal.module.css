@@ -1,0 +1,90 @@
+.modal {
+    width: 700px;
+    padding: 32px;
+    animation: show .2s ease;
+}
+
+
+/* =========================
+   CLOSE
+========================= */
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+
+    border: none;
+    background: none;
+
+    cursor: pointer;
+    font-size: 22px;
+
+    color: var(--text-secondary);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.sigla {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.grupo {
+    margin-bottom: 30px;
+}
+
+.grupoTitulo {
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   REQUISITO
+========================= */
+
+.reqCard {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+    padding: 18px;
+    margin-bottom: 14px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.header p {
+    margin-top: 6px;
+    color: var(--text-secondary);
+}
+
+.footer {
+    display: flex;
+    gap: 25px;
+    margin-top: 14px;
+
+    color: var(--text-secondary);
+    font-size: .9rem;
+}
+
+
+/* =========================
+   ESTADO
+========================= */
+
+.estado {
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    font-size: .8rem;
+    font-weight: 600;
+}

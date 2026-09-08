@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 6px;
+
+    background: var(--surface);
+    border-radius: var(--radius-medium);
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
+
+    width: max-content;
+    margin: 20px auto;
+}
+
+.container button {
+    border: none;
+    background: transparent;
+
+    color: var(--text-secondary);
+
+    padding: 11px 24px;
+    border-radius: var(--radius-medium);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.container button:hover {
+    color: var(--primary);
+    background: var(--background-secondary);
+}
+
+.active {
+    background: var(--primary) !important;
+    color: white !important;
+
+    box-shadow:
+        0 5px 12px rgba(37, 99, 235, .3);
+}
