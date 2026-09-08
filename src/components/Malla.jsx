@@ -16,7 +16,6 @@ import { getRequisitosCurso } from "../services/requisitoService";
 
 import styles from "./Malla.module.css";
 
-
 export default function Malla() {
 
     const [ciclo, setCiclo] = useState("I");
@@ -29,16 +28,13 @@ export default function Malla() {
     const [detalleRequisitos, setDetalleRequisitos] = useState(null);
     const [mostrarRequisitos, setMostrarRequisitos] = useState(false);
 
-
     useEffect(() => {
         cargarCursos();
     }, [ciclo]);
 
-
     useEffect(() => {
         cargarTodosCursos();
     }, []);
-
 
     async function cargarCursos() {
 
@@ -59,9 +55,7 @@ export default function Malla() {
             setLoading(false);
 
         }
-
     }
-
 
     async function cargarTodosCursos() {
 
@@ -73,14 +67,14 @@ export default function Malla() {
 
         } catch (error) {
 
-            console.error(error);
+            console.error("Error cargando todos los cursos:", error);
 
         }
-
     }
 
-
     function actualizarCurso(cursoActualizado) {
+
+        if (!cursoActualizado) return;
 
         setCursos((prevCursos) =>
             prevCursos.map((curso) =>
@@ -90,7 +84,6 @@ export default function Malla() {
             )
         );
 
-
         setTodosCursos((prevCursos) =>
             prevCursos.map((curso) =>
                 curso.id === cursoActualizado.id
@@ -99,11 +92,8 @@ export default function Malla() {
             )
         );
 
-
         setCursoSeleccionado(cursoActualizado);
-
     }
-
 
     async function abrirRequisitos(curso) {
 
@@ -122,17 +112,17 @@ export default function Malla() {
 
         } catch (error) {
 
-            console.error(error);
+            console.error(
+                "Error cargando requisitos:",
+                error
+            );
 
         }
-
     }
-
 
     if (loading) {
         return <h2>Cargando cursos...</h2>;
     }
-
 
     return (
 
@@ -143,7 +133,6 @@ export default function Malla() {
                 setVista={setVista}
             />
 
-
             {vista === "cards" && (
 
                 <SelectorCiclos
@@ -152,7 +141,6 @@ export default function Malla() {
                 />
 
             )}
-
 
             {vista === "cards" ? (
 
@@ -187,30 +175,30 @@ export default function Malla() {
 
             )}
 
-
             {cursoSeleccionado && !mostrarRequisitos && (
 
                 <CursoDetalleModal
                     curso={cursoSeleccionado}
-                    onClose={() => setCursoSeleccionado(null)}
+                    onClose={() =>
+                        setCursoSeleccionado(null)
+                    }
                     onCursoActualizado={actualizarCurso}
                     onVerRequisitos={abrirRequisitos}
                 />
 
             )}
 
-
             {mostrarRequisitos && detalleRequisitos && (
 
                 <RequisitoModal
                     detalle={detalleRequisitos}
-                    onClose={() => setMostrarRequisitos(false)}
+                    onClose={() =>
+                        setMostrarRequisitos(false)
+                    }
                 />
 
             )}
 
         </div>
-
     );
-
 }

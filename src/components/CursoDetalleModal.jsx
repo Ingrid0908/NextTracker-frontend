@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import styles from "./CursoDetalleModal.module.css";
 
 import {
@@ -12,14 +13,12 @@ import {
     actualizarEvaluacion
 } from "../services/evaluacionService";
 
-
 const ESTADO_LABEL = {
     pendiente: "Pendiente",
     matriculado: "Matriculado",
     aprobado: "Aprobado",
     reprobado: "Reprobado",
 };
-
 
 export default function CursoDetalleModal({
     curso,
@@ -29,112 +28,140 @@ export default function CursoDetalleModal({
 }) {
 
     const [evaluaciones, setEvaluaciones] = useState([]);
-    const [mostrarNuevaEvaluacion, setMostrarNuevaEvaluacion] = useState(false);
+
+    const [mostrarNuevaEvaluacion, setMostrarNuevaEvaluacion] =
+        useState(false);
+
     const [nombreEvaluacion, setNombreEvaluacion] = useState("");
     const [porcentajeEvaluacion, setPorcentajeEvaluacion] = useState("");
+
     const [editando, setEditando] = useState(null);
     const [valorEditado, setValorEditado] = useState("");
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-
     useEffect(() => {
+
         if (!curso) return;
 
         cargarEvaluaciones();
+
     }, [curso]);
 
-
     async function cargarEvaluaciones() {
+
         try {
+
+            setError("");
+
             const data = await getEvaluacionesCurso(curso.id);
+
             setEvaluaciones(data);
+
         } catch (error) {
+
             console.error(error);
-            setError("No se pudieron cargar las evaluaciones.");
+
+            setError(
+                "No se pudieron cargar las evaluaciones."
+            );
         }
     }
 
-
     if (!curso) return null;
-
 
     const acumulado = evaluaciones.reduce(
         (total, evaluacion) =>
-            total + Number(evaluacion.porcentajeObtenido || 0),
+            total +
+            Number(evaluacion.porcentajeObtenido || 0),
         0
     );
-
 
     const porcentajeEvaluado = evaluaciones.reduce(
         (total, evaluacion) =>
-            total + Number(evaluacion.porcentaje || 0),
+            total +
+            Number(evaluacion.porcentaje || 0),
         0
     );
 
-
     async function handleMatricular() {
+
         try {
+
             setLoading(true);
             setError("");
 
-            const cursoActualizado = await matricularCurso(curso.id);
+            const cursoActualizado =
+                await matricularCurso(curso.id);
 
             onCursoActualizado?.(cursoActualizado);
 
         } catch (error) {
+
             setError(
                 error.message ||
                 "No se pudo matricular el curso."
             );
+
         } finally {
+
             setLoading(false);
+
         }
     }
 
-
     async function agregarEvaluacion() {
+
         setError("");
 
         const nombre = nombreEvaluacion.trim();
         const porcentaje = Number(porcentajeEvaluacion);
 
-
         if (!nombre) {
-            setError("Ingresa el nombre de la evaluación.");
+
+            setError(
+                "Ingresa el nombre de la evaluación."
+            );
+
             return;
         }
-
 
         if (
             isNaN(porcentaje) ||
             porcentaje <= 0 ||
             porcentaje > 100
         ) {
-            setError("El porcentaje debe estar entre 0 y 100.");
+
+            setError(
+                "El porcentaje debe estar entre 0 y 100."
+            );
+
             return;
         }
 
-
         if (porcentajeEvaluado + porcentaje > 100) {
+
             setError(
                 `Las evaluaciones no pueden superar el 100%. Actualmente tienes ${porcentajeEvaluado}%.`
             );
+
             return;
         }
 
-
         try {
+
             setLoading(true);
 
-            const nuevaEvaluacion = await crearEvaluacion(
-                curso.id,
-                nombre,
-                porcentaje,
-                0
-            );
+            const nuevaEvaluacion =
+                await crearEvaluacion(
+                    curso.id,
+                    nombre,
+                    porcentaje,
+                    0
+                );
 
-            setEvaluaciones(prev => [
+            setEvaluaciones((prev) => [
                 ...prev,
                 nuevaEvaluacion
             ]);
@@ -144,47 +171,53 @@ export default function CursoDetalleModal({
             setMostrarNuevaEvaluacion(false);
 
         } catch (error) {
+
             console.error(error);
 
             setError(
                 error.message ||
                 "No se pudo agregar la evaluación."
             );
+
         } finally {
+
             setLoading(false);
+
         }
     }
 
-
     async function guardarObtenido(evaluacion) {
-        const obtenido = Number(valorEditado);
 
+        const obtenido = Number(valorEditado);
 
         if (
             isNaN(obtenido) ||
             obtenido < 0 ||
             obtenido > Number(evaluacion.porcentaje)
         ) {
+
             setError(
                 `El valor debe estar entre 0 y ${evaluacion.porcentaje}%.`
             );
+
             return;
         }
 
-
         try {
+
             setLoading(true);
             setError("");
 
-            const actualizada = await actualizarEvaluacion(
-                evaluacion.id,
-                evaluacion.nombre,
-                evaluacion.porcentaje,
-                obtenido
-            );
+            const actualizada =
+                await actualizarEvaluacion(
+                    evaluacion.id,
+                    evaluacion.nombre,
+                    evaluacion.porcentaje,
+                    obtenido
+                );
 
-            setEvaluaciones(prev =>
-                prev.map(item =>
+            setEvaluaciones((prev) =>
+                prev.map((item) =>
                     item.id === actualizada.id
                         ? actualizada
                         : item
@@ -195,20 +228,25 @@ export default function CursoDetalleModal({
             setValorEditado("");
 
         } catch (error) {
+
             console.error(error);
 
             setError(
                 error.message ||
                 "No se pudo actualizar la evaluación."
             );
+
         } finally {
+
             setLoading(false);
+
         }
     }
 
-
     async function handleFinalizar() {
+
         try {
+
             setLoading(true);
             setError("");
 
@@ -218,17 +256,26 @@ export default function CursoDetalleModal({
             onCursoActualizado?.(cursoActualizado);
 
         } catch (error) {
+
             setError(
                 error.message ||
                 "No se pudo finalizar el curso."
             );
+
         } finally {
+
             setLoading(false);
+
         }
     }
 
+    const mostrarEvaluaciones =
+        curso.estado === "matriculado" ||
+        curso.estado === "aprobado" ||
+        curso.estado === "reprobado";
 
     return (
+
         <div
             className="modalOverlay"
             onClick={onClose}
@@ -246,7 +293,6 @@ export default function CursoDetalleModal({
                     ✕
                 </button>
 
-
                 <span className={styles.sigla}>
                     {curso.sigla}
                 </span>
@@ -255,12 +301,9 @@ export default function CursoDetalleModal({
                     {curso.nombre}
                 </h2>
 
-
                 <div className={styles.estadoContainer}>
 
-                    <span>
-                        Estado
-                    </span>
+                    <span>Estado</span>
 
                     <strong
                         className={`${styles.estado} estado-${curso.estado}`}
@@ -270,57 +313,47 @@ export default function CursoDetalleModal({
 
                 </div>
 
-
                 <div className={styles.info}>
 
                     <div className={styles.row}>
                         <span>Créditos</span>
-
-                        <strong>
-                            {curso.creditos}
-                        </strong>
+                        <strong>{curso.creditos}</strong>
                     </div>
-
 
                     <div className={styles.row}>
                         <span>Horas</span>
-
-                        <strong>
-                            {curso.horas}
-                        </strong>
+                        <strong>{curso.horas}</strong>
                     </div>
-
 
                     <div className={styles.row}>
                         <span>Ciclo</span>
-
-                        <strong>
-                            {curso.ciclo}
-                        </strong>
+                        <strong>{curso.ciclo}</strong>
                     </div>
 
                 </div>
 
 
-                {curso.estado === "matriculado" && (
+                {mostrarEvaluaciones && (
+
                     <div className={styles.evaluaciones}>
 
                         <div className={styles.evaluacionesHeader}>
 
-                            <h3>
-                                Evaluaciones
-                            </h3>
+                            <h3>Evaluaciones</h3>
 
-                            {!mostrarNuevaEvaluacion && (
-                                <button
-                                    className={styles.addButton}
-                                    onClick={() =>
-                                        setMostrarNuevaEvaluacion(true)
-                                    }
-                                >
-                                    + Agregar
-                                </button>
-                            )}
+                            {curso.estado === "matriculado" &&
+                                !mostrarNuevaEvaluacion && (
+
+                                    <button
+                                        className={styles.addButton}
+                                        onClick={() =>
+                                            setMostrarNuevaEvaluacion(true)
+                                        }
+                                    >
+                                        + Agregar
+                                    </button>
+
+                                )}
 
                         </div>
 
@@ -373,7 +406,9 @@ export default function CursoDetalleModal({
                                                     <input
                                                         type="number"
                                                         min="0"
-                                                        max={evaluacion.porcentaje}
+                                                        max={
+                                                            evaluacion.porcentaje
+                                                        }
                                                         step="0.01"
                                                         value={valorEditado}
                                                         onChange={(e) =>
@@ -392,6 +427,7 @@ export default function CursoDetalleModal({
                                                                 evaluacion
                                                             )
                                                         }
+                                                        disabled={loading}
                                                     >
                                                         ✓
                                                     </button>
@@ -401,28 +437,38 @@ export default function CursoDetalleModal({
                                             ) : (
 
                                                 <>
+
                                                     <strong>
                                                         {
                                                             evaluacion.porcentajeObtenido
                                                         }%
                                                     </strong>
 
-                                                    <button
-                                                        className={
-                                                            styles.editarButton
-                                                        }
-                                                        onClick={() => {
-                                                            setEditando(
-                                                                evaluacion.id
-                                                            );
 
-                                                            setValorEditado(
-                                                                evaluacion.porcentajeObtenido
-                                                            );
-                                                        }}
-                                                    >
-                                                        Editar
-                                                    </button>
+                                                    {curso.estado ===
+                                                        "matriculado" && (
+
+                                                        <button
+                                                            className={
+                                                                styles.editarButton
+                                                            }
+                                                            onClick={() => {
+
+                                                                setEditando(
+                                                                    evaluacion.id
+                                                                );
+
+                                                                setValorEditado(
+                                                                    evaluacion.porcentajeObtenido
+                                                                );
+
+                                                            }}
+                                                        >
+                                                            Editar
+                                                        </button>
+
+                                                    )}
+
                                                 </>
 
                                             )}
@@ -437,10 +483,10 @@ export default function CursoDetalleModal({
 
                         )}
 
-
                         <div className={styles.resumen}>
 
                             <div>
+
                                 <span>
                                     Evaluado
                                 </span>
@@ -448,10 +494,12 @@ export default function CursoDetalleModal({
                                 <strong>
                                     {porcentajeEvaluado}%
                                 </strong>
+
                             </div>
 
 
                             <div>
+
                                 <span>
                                     Acumulado
                                 </span>
@@ -459,18 +507,20 @@ export default function CursoDetalleModal({
                                 <strong>
                                     {acumulado}%
                                 </strong>
+
                             </div>
 
                         </div>
 
 
-                        {mostrarNuevaEvaluacion && (
+                        {curso.estado === "matriculado" &&
+                            mostrarNuevaEvaluacion && (
 
                             <div className={styles.nuevaEvaluacion}>
 
                                 <input
                                     type="text"
-                                    placeholder="Nombre"
+                                    placeholder="Nombre de la evaluación"
                                     value={nombreEvaluacion}
                                     onChange={(e) =>
                                         setNombreEvaluacion(
@@ -484,7 +534,7 @@ export default function CursoDetalleModal({
 
                                     <input
                                         type="number"
-                                        placeholder="Valor"
+                                        placeholder="Porcentaje"
                                         min="0"
                                         max="100"
                                         step="0.01"
@@ -496,9 +546,7 @@ export default function CursoDetalleModal({
                                         }
                                     />
 
-                                    <span>
-                                        %
-                                    </span>
+                                    <span>%</span>
 
                                 </div>
 
@@ -506,13 +554,21 @@ export default function CursoDetalleModal({
                                 <div className={styles.formActions}>
 
                                     <button
-                                        className={styles.cancelButton}
+                                        className={
+                                            styles.cancelButton
+                                        }
                                         onClick={() => {
-                                            setMostrarNuevaEvaluacion(false);
+
+                                            setMostrarNuevaEvaluacion(
+                                                false
+                                            );
+
                                             setNombreEvaluacion("");
                                             setPorcentajeEvaluacion("");
                                             setError("");
+
                                         }}
+                                        disabled={loading}
                                     >
                                         Cancelar
                                     </button>
@@ -523,7 +579,9 @@ export default function CursoDetalleModal({
                                         onClick={agregarEvaluacion}
                                         disabled={loading}
                                     >
-                                        Agregar
+                                        {loading
+                                            ? "Guardando..."
+                                            : "Guardar"}
                                     </button>
 
                                 </div>
@@ -533,8 +591,8 @@ export default function CursoDetalleModal({
                         )}
 
                     </div>
-                )}
 
+                )}
 
                 {(curso.estado === "aprobado" ||
                     curso.estado === "reprobado") && (
@@ -550,6 +608,7 @@ export default function CursoDetalleModal({
                         </strong>
 
                     </div>
+
                 )}
 
 
@@ -564,6 +623,7 @@ export default function CursoDetalleModal({
                             ? "Matriculando..."
                             : "Matricular curso"}
                     </button>
+
                 )}
 
 
@@ -577,17 +637,21 @@ export default function CursoDetalleModal({
                             porcentajeEvaluado < 100
                         }
                     >
-                        Finalizar curso
+                        {loading
+                            ? "Finalizando..."
+                            : "Finalizar curso"}
                     </button>
+
                 )}
 
 
                 {error && (
+
                     <p className={styles.error}>
                         {error}
                     </p>
-                )}
 
+                )}
 
                 <div className={styles.actions}>
 
